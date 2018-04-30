@@ -1,5 +1,5 @@
 function p1() {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       resolve(1);
     }, 2000);
