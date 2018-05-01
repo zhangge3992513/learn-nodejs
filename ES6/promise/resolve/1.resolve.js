@@ -6,6 +6,6 @@ var p = new Promise((resolve, reject) => {
 p.then(data => {
   console.log('0');
   console.log('00');
-  console.log('by github')
+  console.log('by github');
 })
 
