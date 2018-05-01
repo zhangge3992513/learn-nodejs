@@ -5,5 +5,6 @@ var p = new Promise((resolve, reject) => {
 });
 p.then(data => {
   console.log('0');
+  
 })
 
