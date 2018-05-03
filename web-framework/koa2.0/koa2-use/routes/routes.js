@@ -15,7 +15,7 @@ router.get('/timeout', async (ctx, next) => {
   });
 });
 
-router.get('/users', (ctx) => {
+router.get('/users', (ctx, next) => {
   ctx.body = {
     data: [
       {
@@ -37,9 +37,10 @@ router.get('/users', (ctx) => {
     msg: 'ok',
     errCode: 0,
   };
+  next();
 });
 
-router.get('/user/:id', (ctx) => {
+router.get('/user/:id', (ctx, next) => {
   ctx.body = {
     user: {
       id: 1,
@@ -48,6 +49,7 @@ router.get('/user/:id', (ctx) => {
     msg: 'ok',
     errCode: 0,
   };
+  // next();
 });
 
 

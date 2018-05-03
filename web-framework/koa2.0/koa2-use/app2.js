@@ -4,24 +4,23 @@ const fs = require('fs');
 const { join, extname } = require('path');
 
 const app = new Koa();
-const router = require('koa-router')();
+// const router = require('koa-router')();
+let router = require('koa-router');
+router = new router();
 const routers = require('./routes/routes');
 
 /* app.use('/aaa', (ctx, next) => {
-  next();
+  // next();
   ctx.body = 123;
 }); */
-router.use((ctx, next) => {
-  next();
-  ctx.body.a = 123; // 这个会给body添加属性a,值为123,
-});
+
 app.use(router.routes());
 
 /**
  *router.use 中间件
  *总会执行
  */
-router.use(async (ctx, next) => {
+router.use(async function (ctx, next) {
   console.log('rouer.use 1.1');
   next();
   console.log('rouer.use 1.2');
