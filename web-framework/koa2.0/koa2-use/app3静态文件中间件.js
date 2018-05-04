@@ -1,13 +1,18 @@
 const Koa = require('koa');
+
+const fs = require('fs');
+const { join, extname } = require('path');
 const serverStrtic = require('koa-static');
-const { join } = require('path');
 
 const app = new Koa();
 const router = require('koa-router')();
 const routers = require('./routes/routes');
 
-app.use(serverStrtic(__dirname + '/public/html', { extensions: ['html'] })); // , { extensions: ['html'] }
-app.use(serverStrtic(__dirname + '/public/img', { extensions: ['jpg'] }));
+app.use(serverStrtic(__dirname, '/public/html', { extensions: ['html'] }));
+/* app.use('/aaa', (ctx, next) => {
+  next();
+  ctx.body = 123;
+}); */
 router.use((ctx, next) => {
   next();
   ctx.body.a = 123; // 这个会给body添加属性a,值为123,
@@ -41,11 +46,27 @@ app.use(async (ctx, next) => {
     (async () => {
       await next();
       clearTimeout(timeout);
-      // console.log('超时定时器清除!');
+      console.log('超时定时器清除!');
       resolve();
     })();
   }),
   ]);
+});
+
+app.use(async (ctx, next) => {
+  // console.log(ctx.path, ctx.url, ctx.origin, ctx.originalUrl);
+  console.log(ctx.origin + ctx.path);
+  const reqPath = ctx.path;
+  // console.log(path.substring(path.lastIndexOf('/') + 1));
+  const fileExtname = extname(reqPath);
+  // console.log(reqPath, fileExtname);
+  if (fileExtname !== '' && fileExtname !== '.') {
+    const fileStream = fs.createReadStream(join(__dirname, 'public/', reqPath));
+    ctx.set('content-type', 'text/html');
+    ctx.body = fileStream;
+  } else {
+    await next();
+  }
 });
 
 // 加载路由
@@ -55,5 +76,4 @@ router.use(routers.routes());
 if (!module.parent) {
   app.listen(3000);
 }
-// console.log(__dirname + '/public/a');
 

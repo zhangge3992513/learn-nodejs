@@ -49,6 +49,24 @@ router.get('/user/:id', (ctx, next) => {
     msg: 'ok',
     errCode: 0,
   };
+  console.log('1111');
+  // next();
+});
+
+/**
+ * !这个不会被触发
+ * !由于上面已经有了同一个路由
+ */
+router.get('/user/:id', (ctx, next) => {
+  ctx.body = {
+    user: {
+      id: 1,
+      name: '张三2',
+    },
+    msg: 'ok',
+    errCode: 0,
+  };
+  console.log('2222');
   // next();
 });
 

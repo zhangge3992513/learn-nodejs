@@ -3,5 +3,9 @@
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.11.0"
+  },
+  "dependencies": {
+    "koa-static": "^4.0.2",
+    "mongoose": "^5.0.17"
   }
 }
