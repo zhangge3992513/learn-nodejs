@@ -7,7 +7,7 @@ const router = require('koa-router')();
 const routers = require('./routes/routes');
 
 /*
- 错误处理中间件
+ 错误处理中间件, 放在此处可以
 router.use(async (ctx, next) => {
   try {
     await next();
@@ -25,7 +25,7 @@ router.use(async (ctx, next) => {
 app.use(router.routes());
 
 /**
- * 处理错误中间件, 出放在这里是不行的,
+ * 处理错误中间件, 出放在这里可以,
  */
 router.use(async (ctx, next) => {
   try {
@@ -42,7 +42,7 @@ router.use(async (ctx, next) => {
  */
 router.use(async (ctx, next) => {
   console.log('rouer.use 1.1');
-  throw new Error('此处抛出了一超级错误!');
+  // throw new Error('此处抛出了一超级错误!'); // 
   await next();
   console.log('rouer.use 1.2');
 });
@@ -73,6 +73,16 @@ app.use(async (ctx, next) => {
 
 // 加载路由
 router.use(routers.routes());
+/**
+ *router.use 中间件
+ *不一定会执行, 如果请求是上面的user, 这个就不会执行了
+ */
+router.use(async (ctx, next) => {
+  console.log('rouer.use 2.1');
+  // throw new Error('此处抛出了一超级错误!'); // 
+  await next();
+  console.log('rouer.use 2.2');
+});
 
 
 if (!module.parent) {
