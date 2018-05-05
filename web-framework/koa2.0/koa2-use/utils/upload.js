@@ -2,6 +2,10 @@ const formidable = require('formidable');
 const fs = require('fs');
 const { join } = require('path');
 
+/**
+ * 文件上传
+ * @param {*} ctx 
+ */
 function dealUpload(ctx) {
   let form = new formidable.IncomingForm();
   form.keepExtensions = true; // 保存原有的扩展名.

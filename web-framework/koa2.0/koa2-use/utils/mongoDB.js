@@ -43,6 +43,9 @@ async function getBlogList(kind) {
   return results;
 }
 
+/**
+ * 查找ID的最大值
+ */
 async function queryMaxID() {
   let temp = 0;
   await blogListSchema.find({}).sort({ id: -1 }).limit(1).then((doc) => {
@@ -55,6 +58,11 @@ async function queryMaxID() {
   return temp;
 }
 
+/**
+ * 添加
+ * @param {*} title 
+ * @param {*} kind 
+ */
 async function insertBlogList(title, kind) {
   let value = await queryMaxID();
   /* eslint no-plusplus: 0 */
@@ -67,3 +75,31 @@ async function insertBlogList(title, kind) {
     console.log('insert done');
   });
 }
+
+/**
+ * 删除blog
+ * * 未定义成async
+ * @param {*} id 
+ */
+function deleteBlogId(id) {
+  const query = { id };
+  BlogList.remove(query).then(doc => {
+    console.log('done');
+  });
+}
+
+/**
+ * 修改blog分类
+ * @param {*} id 
+ * @param {*} kind 
+ */
+function modifyBlogKind(id, kind) {
+  let query = { id };
+  BlogList.findOneAndUpdate(query, { kind }.then( doc => {
+    console.log('done');
+  }));
+}
+
+async
+
+

@@ -6,7 +6,6 @@ const app = new Koa();
 const router = require('koa-router')();
 const routers = require('./routes/routes');
 const routersBlog = require('./routes/blogRoutes');
-
 /*
  错误处理中间件
 router.use(async (ctx, next) => {
@@ -43,7 +42,7 @@ router.use(async (ctx, next) => {
  */
 router.use(async (ctx, next) => {
   console.log('rouer.use 1.1');
-  throw new Error('此处抛出了一超级错误!');
+  // throw new Error('此处抛出了一超级错误!');
   await next();
   console.log('rouer.use 1.2');
 });
@@ -76,7 +75,6 @@ app.use(async (ctx, next) => {
 router.use(routers.routes());
 
 
-
 /**
  *router.use 中间件
  *不一定会执行, 如果请求是上面的user/1, 这个就不会执行了
@@ -102,6 +100,7 @@ app.use(async (ctx, next) => {
   console.log('rouer.use 3.2');
 });
 router.use(routersBlog.routes());
+
 
 if (!module.parent) {
   app.listen(3000);
