@@ -2,10 +2,12 @@ const Koa = require('koa');
 const serverStrtic = require('koa-static');
 const { join } = require('path');
 
+
 const app = new Koa();
 const router = require('koa-router')();
 const routers = require('./routes/routes');
 const routersBlog = require('./routes/blogRoutes');
+const routersLogin = require('./routes/login');
 /*
  错误处理中间件
 router.use(async (ctx, next) => {
@@ -19,6 +21,8 @@ router.use(async (ctx, next) => {
 app.use(serverStrtic(__dirname + '/public/html', { extensions: ['html'] })); // , { extensions: ['html'] }
 app.use(serverStrtic(__dirname + '/public/img', { extensions: ['jpg'] }));
 router.use(async (ctx, next) => {
+  ctx.cookies.set('LoginStatus', true);
+  ctx.redirect('/html/a');
   await next();
   ctx.body.a = 123; // 这个会给body添加属性a,值为123,
 });
@@ -73,8 +77,7 @@ app.use(async (ctx, next) => {
 
 // 加载路由
 router.use(routers.routes());
-
-
+router.use(routersLogin.routes());
 /**
  *router.use 中间件
  *不一定会执行, 如果请求是上面的user/1, 这个就不会执行了
