@@ -43,7 +43,7 @@ router.use(async (ctx, next) => {
  */
 router.use(async (ctx, next) => {
   console.log('rouer.use 1.1');
-  throw new Error('此处抛出了一超级错误!');
+  // throw new Error('此处抛出了一超级错误!');
   await next();
   console.log('rouer.use 1.2');
 });

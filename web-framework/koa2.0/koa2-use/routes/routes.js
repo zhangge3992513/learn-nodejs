@@ -69,6 +69,18 @@ router.get('/user/:id', (ctx, next) => {
   console.log('2222');
   // next();
 });
-
+router.post('/user/:id', (ctx, next) => {
+  ctx.body = {
+    user: {
+      id: 1,
+      name: '张三2',
+    },
+    msg: 'ok',
+    mehtod: 'post',
+    errCode: 0,
+  };
+  console.log('2222');
+  // next();
+});
 
 module.exports = router;
