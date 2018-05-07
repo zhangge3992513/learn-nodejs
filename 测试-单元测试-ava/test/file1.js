@@ -8,6 +8,3 @@ test.cb('#readFile()', (t) => {
 });
 
 
-require('fs').readFile(__filename, (err, data) => {
- console.log(data);
-});
