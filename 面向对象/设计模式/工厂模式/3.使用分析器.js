@@ -13,3 +13,4 @@ function getRandomArray(len) {
 getRandomArray(1e6);
 console.log('done');
 
+// export NODE_ENV=development   node 3.使用分析器.js
