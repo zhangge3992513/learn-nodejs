@@ -61,3 +61,9 @@ const jsonData = {
 const { id, status, data: number } = jsonData;
 
 console.log(id, status, number);
+console.log(number);
+
+// let x = 111, y=222;
+const { x, y } = { y: 123, x: 456 };
+// let { x, y } = { y, x };
+console.log(x, y);
