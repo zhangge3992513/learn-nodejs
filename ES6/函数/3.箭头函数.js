@@ -25,7 +25,7 @@ e1.on('begin', () => {
 });
 console.log(1);
 
-
+console.log('=======');
 (function (params) {
   this.a = 123;
   (()=>{
@@ -34,7 +34,16 @@ console.log(1);
       console.log(this.a ,123);
     })()
   })()
-})()
+})();
 
+const fnArrow = () => {
+  console.log(this, 'aaa');
+}
+fnArrow();
 
-
+const fnArrow2 = function (params) {
+  this.a = 'ddddddd';
+  console.log(this, 'bbb');
+}
+fnArrow2(this);
+console.log(this, 'ccc');
