@@ -7,3 +7,6 @@ This is not logged
 First chunk
 Secodnd chunk
 This is not logged
+First chunk
+Secodnd chunk
+This is not logged
