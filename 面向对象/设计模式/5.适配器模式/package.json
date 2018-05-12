@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "level": "^3.0.1"
+    "level": "^3.0.1",
+    "log-symbols": "^2.2.0"
   }
 }
