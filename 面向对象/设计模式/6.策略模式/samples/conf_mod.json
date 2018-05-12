@@ -1,0 +1,8 @@
+{
+  "name": 123,
+  "sex": "男",
+  "age": 123,
+  "book": {
+    "nodejs": "design patterns"
+  }
+}
