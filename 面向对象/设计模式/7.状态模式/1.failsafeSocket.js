@@ -11,7 +11,7 @@ class FailsafeSocket {
       offline: new OfflineState(this),
       online: new OnlineState(this),
     };
-    this.changState('offline');
+    this.changState('offline'); // 初始设置成离线.状态, 500毫秒后会自动连接上去会变成在线状态.
   }
   changState(state) {
     console.log(`Activating state: ${state}`);
